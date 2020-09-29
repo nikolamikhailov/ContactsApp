@@ -80,6 +80,4 @@ class DetailsViewModel(
         }
         return null
     }
-
-
 }

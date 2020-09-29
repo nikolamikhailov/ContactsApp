@@ -13,9 +13,7 @@ import ru.l4gunner4l.contactsapp.base.model.ContactModel
 class ContactsAdapter(
     private var contacts: List<ContactModel> = emptyList(),
     private val onClick: (position: Int) -> Unit
-) :
-    RecyclerView.Adapter<ContactsAdapter.VH>() {
-
+) : RecyclerView.Adapter<ContactsAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         return VH(LayoutInflater.from(parent.context).inflate(R.layout.item_contact, parent, false))
@@ -26,6 +24,7 @@ class ContactsAdapter(
     }
 
     override fun getItemCount(): Int = contacts.size
+
     fun setData(contactsList: List<ContactModel>) {
         contacts = contactsList
         notifyDataSetChanged()

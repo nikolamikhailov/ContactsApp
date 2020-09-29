@@ -48,6 +48,4 @@ class ContactsViewModel(
         }
         return null
     }
-
-
 }

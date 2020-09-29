@@ -21,7 +21,6 @@ class HolderFragment : Fragment(R.layout.fragment_holder) {
     private val router: Router by inject(named(CONTACTS_QUALIFIER))
     private val navigatorHolder: NavigatorHolder by inject(named(CONTACTS_QUALIFIER))
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         router.navigateTo(ContactsScreen())
@@ -43,5 +42,4 @@ class HolderFragment : Fragment(R.layout.fragment_holder) {
             childFragmentManager,
             R.id.fragmentHolder
         )
-
 }

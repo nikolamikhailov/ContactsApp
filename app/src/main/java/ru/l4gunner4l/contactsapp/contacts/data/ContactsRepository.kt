@@ -8,14 +8,4 @@ interface ContactsRepository {
     fun getContacts(): Single<List<ContactModel>>
 
     fun deleteContact(entity: ContactModel): Single<Unit>
-
 }
-
-
-
-
-
-
-
-
-

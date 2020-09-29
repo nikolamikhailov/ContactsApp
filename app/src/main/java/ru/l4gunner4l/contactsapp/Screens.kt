@@ -12,8 +12,8 @@ class ContactsScreen : SupportAppScreen() {
     }
 }
 
-
 class DetailsScreen(private val id: String? = null) : SupportAppScreen() {
+
     override fun getFragment(): Fragment? {
         return DetailsFragment.newInstance(id)
     }
