@@ -7,8 +7,9 @@ import ru.l4gunner4l.contactsapp.base.BaseViewModel
 import ru.l4gunner4l.contactsapp.base.Event
 import ru.l4gunner4l.contactsapp.contacts.data.ContactsInteractor
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
-class ContactsViewModel(
+class ContactsViewModel @Inject constructor(
     private val interactor: ContactsInteractor,
     private val router: Router
 ) : BaseViewModel<ViewState>() {
