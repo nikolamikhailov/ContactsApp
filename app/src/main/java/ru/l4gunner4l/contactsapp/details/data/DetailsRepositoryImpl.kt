@@ -5,9 +5,8 @@ import ru.l4gunner4l.contactsapp.base.mapToEntityModel
 import ru.l4gunner4l.contactsapp.base.mapToUiModel
 import ru.l4gunner4l.contactsapp.base.model.ContactModel
 import ru.l4gunner4l.contactsapp.contacts.data.local.ContactsDao
-import javax.inject.Inject
 
-class DetailsRepositoryImpl @Inject constructor(
+class DetailsRepositoryImpl(
     private val contactsDao: ContactsDao
 ) : DetailsRepository {
 

@@ -7,9 +7,8 @@ import ru.l4gunner4l.contactsapp.base.BaseViewModel
 import ru.l4gunner4l.contactsapp.base.Event
 import ru.l4gunner4l.contactsapp.details.data.DetailsInteractor
 import ru.terrakok.cicerone.Router
-import javax.inject.Inject
 
-class DetailsViewModel @Inject constructor(
+class DetailsViewModel(
     private val id: String?,
     private val interactor: DetailsInteractor,
     private val router: Router

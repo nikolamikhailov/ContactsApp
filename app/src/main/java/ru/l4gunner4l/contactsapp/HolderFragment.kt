@@ -2,32 +2,24 @@ package ru.l4gunner4l.contactsapp
 
 import android.os.Bundle
 import android.view.View
-import dagger.android.support.DaggerFragment
-import ru.l4gunner4l.contactsapp.di.dagger.modules.NavModule.Companion.NAV_HOLDER_QUALIFIER
-import ru.l4gunner4l.contactsapp.di.dagger.modules.NavModule.Companion.ROUTER_QUALIFIER
+import androidx.fragment.app.Fragment
+import org.koin.android.ext.android.inject
+import org.koin.core.qualifier.named
+import ru.l4gunner4l.contactsapp.base.CONTACTS_QUALIFIER
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import javax.inject.Inject
-import javax.inject.Named
 
-class HolderFragment : DaggerFragment(R.layout.fragment_holder) {
+class HolderFragment : Fragment(R.layout.fragment_holder) {
 
     companion object {
         fun newInstance() = HolderFragment()
     }
 
     private val navigator: Navigator by lazy { createNavigator() }
-
-    @Inject
-    @Named(ROUTER_QUALIFIER)
-    lateinit var router: Router
-
-    @Inject
-    @Named(NAV_HOLDER_QUALIFIER)
-    lateinit var navigatorHolder: NavigatorHolder
-
+    private val router: Router by inject(named(CONTACTS_QUALIFIER))
+    private val navigatorHolder: NavigatorHolder by inject(named(CONTACTS_QUALIFIER))
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

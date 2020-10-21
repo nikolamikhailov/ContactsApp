@@ -1,9 +1,8 @@
 package ru.l4gunner4l.contactsapp.details.data
 
 import ru.l4gunner4l.contactsapp.base.model.ContactModel
-import javax.inject.Inject
 
-class DetailsInteractor @Inject constructor(
+class DetailsInteractor(
     private val contactsRepository: DetailsRepository
 ) {
     fun getContact(id: String) = contactsRepository.getContact(id)
