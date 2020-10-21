@@ -10,14 +10,11 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class DetailsViewModel @Inject constructor(
-    private val id: String?,
     private val interactor: DetailsInteractor,
     private val router: Router
 ) : BaseViewModel<ViewState>() {
 
-    init {
-        if (id != null) processDataEvent(DataEvent.RequestContact(id))
-    }
+    var id: String? = null
 
     override fun initialViewState(): ViewState {
         return ViewState(STATUS.LOAD, null)
@@ -28,7 +25,6 @@ class DetailsViewModel @Inject constructor(
             is UiEvent.OnExitClick -> {
                 router.exit()
             }
-            // здесь чтобы тост выводить надо previousState возвращать? а также создать новый STATUS?
             is UiEvent.OnSuccessAdded -> {
                 Log.i("M_MAIN", "successed added")
             }
