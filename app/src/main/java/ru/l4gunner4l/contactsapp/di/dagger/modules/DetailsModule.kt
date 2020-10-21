@@ -40,7 +40,7 @@ abstract class DetailsModule {
             interactor: DetailsInteractor,
             @Named(NavModule.ROUTER_QUALIFIER) router: Router
         ): DetailsViewModel {
-            return DetailsViewModel(interactor, router)
+            return DetailsViewModel(null, interactor, router)
         }
     }
 

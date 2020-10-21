@@ -47,12 +47,7 @@ class DetailsFragment : DaggerFragment(R.layout.fragment_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewState.observe(viewLifecycleOwner, Observer(::render))
-        requireArguments().getString(KEY_CONTACT_ID).let { id ->
-            isCreateMode = id == null
-            viewModel.id = id
-            if (!isCreateMode)
-                viewModel.processDataEvent(DataEvent.RequestContact(id!!))
-        }
+        isCreateMode = arguments?.getString(KEY_CONTACT_ID) == null
         initUi()
     }
 
