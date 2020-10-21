@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ContactsApp</string>
+    <string name="label_no_contacts">No contacts</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_phone">Phone</string>
+    <string name="label_exit">Exit</string>
+    <string name="label_save">Save</string>
+</resources>
