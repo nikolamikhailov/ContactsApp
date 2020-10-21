@@ -9,20 +9,21 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.view.View
 import androidx.core.content.FileProvider
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_details.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.parameter.parametersOf
 import ru.l4gunner4l.contactsapp.R
 import ru.l4gunner4l.contactsapp.base.model.ContactModel
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class DetailsFragment : Fragment(R.layout.fragment_details) {
+class DetailsFragment : DaggerFragment(R.layout.fragment_details) {
 
     companion object {
         private const val KEY_CONTACT_ID = "KEY_CONTACT_ID"
@@ -35,19 +36,23 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
             }
     }
 
-    private var photoPath: String =
-        "" // QQQ Так легально делать? если я хочу сохранять только всю модель
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
 
-    // QQQ правильнее во вью модел вынести все текущие данные контакта?
+    private var photoPath: String = ""
+
     private var isCreateMode: Boolean = true
-    private val viewModel: DetailsViewModel by viewModel {
-        parametersOf(requireArguments().getString(KEY_CONTACT_ID))
-    }
+    private val viewModel: DetailsViewModel by viewModels<DetailsViewModel> { factory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewState.observe(viewLifecycleOwner, Observer(::render))
-        isCreateMode = arguments?.getString(KEY_CONTACT_ID) == null
+        requireArguments().getString(KEY_CONTACT_ID).let { id ->
+            isCreateMode = id == null
+            viewModel.id = id
+            if (!isCreateMode)
+                viewModel.processDataEvent(DataEvent.RequestContact(id!!))
+        }
         initUi()
     }
 
