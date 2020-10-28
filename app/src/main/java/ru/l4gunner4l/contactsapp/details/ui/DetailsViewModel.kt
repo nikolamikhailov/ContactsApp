@@ -7,8 +7,9 @@ import ru.l4gunner4l.contactsapp.base.BaseViewModel
 import ru.l4gunner4l.contactsapp.base.Event
 import ru.l4gunner4l.contactsapp.details.data.DetailsInteractor
 import ru.terrakok.cicerone.Router
+import javax.inject.Inject
 
-class DetailsViewModel(
+class DetailsViewModel @Inject constructor(
     private val id: String?,
     private val interactor: DetailsInteractor,
     private val router: Router
@@ -27,7 +28,6 @@ class DetailsViewModel(
             is UiEvent.OnExitClick -> {
                 router.exit()
             }
-            // здесь чтобы тост выводить надо previousState возвращать? а также создать новый STATUS?
             is UiEvent.OnSuccessAdded -> {
                 Log.i("M_MAIN", "successed added")
             }

@@ -3,7 +3,7 @@ package ru.l4gunner4l.contactsapp.contacts.data.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import ru.l4gunner4l.contactsapp.base.CONTACTS_TABLE
+import ru.l4gunner4l.contactsapp.contacts.data.local.ContactsDatabase.Companion.CONTACTS_TABLE
 
 @Entity(tableName = CONTACTS_TABLE)
 data class ContactEntity(
