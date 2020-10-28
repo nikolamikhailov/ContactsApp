@@ -44,14 +44,15 @@ class DetailsFragment : DaggerFragment(R.layout.fragment_details) {
     private var isCreateMode: Boolean = true
     private val viewModel: DetailsViewModel by viewModels<DetailsViewModel> { factory }
 
+    fun getContactId(): String? {
+        return requireArguments().getString(KEY_CONTACT_ID)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.viewState.observe(viewLifecycleOwner, Observer(::render))
         requireArguments().getString(KEY_CONTACT_ID).let { id ->
             isCreateMode = id == null
-            viewModel.id = id
-            if (!isCreateMode)
-                viewModel.processDataEvent(DataEvent.RequestContact(id!!))
         }
         initUi()
     }
@@ -144,6 +145,7 @@ class DetailsFragment : DaggerFragment(R.layout.fragment_details) {
                 )
             )
         }
+        viewModel.processUiEvent(UiEvent.OnExitClick)
     }
 
     private fun render(viewState: ViewState) {

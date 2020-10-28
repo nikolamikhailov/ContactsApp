@@ -10,11 +10,14 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class DetailsViewModel @Inject constructor(
+    private val id: String?,
     private val interactor: DetailsInteractor,
     private val router: Router
 ) : BaseViewModel<ViewState>() {
 
-    var id: String? = null
+    init {
+        if (id != null) processDataEvent(DataEvent.RequestContact(id))
+    }
 
     override fun initialViewState(): ViewState {
         return ViewState(STATUS.LOAD, null)

@@ -38,23 +38,30 @@ abstract class DetailsModule {
         @JvmStatic
         fun providesDetailsViewModel(
             interactor: DetailsInteractor,
-            @Named(NavModule.ROUTER_QUALIFIER) router: Router
+            @Named(NavModule.ROUTER_QUALIFIER) router: Router,
+            fragment: DetailsFragment
         ): DetailsViewModel {
-            return DetailsViewModel(interactor, router)
+            val id = fragment.getContactId()
+            return DetailsViewModel(id, interactor, router)
         }
     }
-
-
-    @ContributesAndroidInjector(
-        modules = [
-            ViewModelBuilder::class
-        ]
-    )
-    internal abstract fun provideDetailsFragment(): DetailsFragment
 
     @Binds
     @IntoMap
     @ViewModelKey(DetailsViewModel::class)
     abstract fun bindViewModel(viewModel: DetailsViewModel): ViewModel
+
+}
+
+@Module
+abstract class DetailsFragmentModule {
+
+    @ContributesAndroidInjector(
+        modules = [
+            ViewModelBuilder::class,
+            DetailsModule::class
+        ]
+    )
+    internal abstract fun provideDetailsFragment(): DetailsFragment
 
 }

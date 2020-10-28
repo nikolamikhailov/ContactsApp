@@ -15,9 +15,9 @@ import javax.inject.Singleton
         MainScreenModule::class,
         AndroidSupportInjectionModule::class,
         ContactsModule::class,
-        DetailsModule::class,
         RoomModule::class,
-        NavModule::class
+        NavModule::class,
+        DetailsFragmentModule::class
     ]
 )
 interface AppComponent : AndroidInjector<App> {
